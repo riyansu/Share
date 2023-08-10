@@ -1,0 +1,466 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HowToPython - Chapter5</title>
+        <link rel="stylesheet" href="Assets/style.css">
+    </head>
+    <body>
+        <span class="Sidebar">
+            <span class="S_homeBtn" onclick="location.href='../index.html'">
+                <img src="Assets/HomeLogo.svg" width="100%">
+            </span>
+            <span class="S_space"></span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter1.html'">
+                1
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter2.html'">
+                2
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter3.html'">
+                3
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter4.html'">
+                4
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter5.html'" style="border: 2px solid darkblue;background-color: rgba(255,255,255,0.7);">
+                5
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter6.html'">
+                6
+            </span>
+            <span class="S_space"></span>
+            <span class="S_advBtn" onclick="location.href='ChapterAdv1.html'">
+                1
+            </span>
+        </span>
+        <div class="Main">
+            <div class="title">Chapter5 : 複雑な処理をしよう</div>
+            <hr class="title">
+            <span class="section">1. 条件分岐</span><br>
+            <p>
+            ここまで、データをずっと扱ってきました。<br>
+            ですが、ここまでの知識では、データを表示するだけで、プログラミングらしくありません。<br>
+            ここから、楽しくなっていきますのでお楽しみに！<br>
+            プログラミングには、if文という仕組みがあります。<br>
+            Chapter3の最後にも少し載せましたね。<br>
+            <br>
+            <span class="subsection">if文</span><br>
+            if文は、条件に応じて処理を変えるときに使用するものです。<br>
+            例えば、お腹が減っていたら、食べ物を食べる、などなど、<br>
+            簡単にいえば「判断」にあたる処理です。<br>
+            if文の構文は、少し複雑で、<br>
+            「<br>
+            if bool型の値: <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ここに処理<br>
+            」<br>
+            と書きます。このbool型の値がTrueなら中身を実行、Falseなら無視します。<br>
+            また、このときのbool型の値のことを、条件式(条件)といいます。<br>
+            実際に書いてみましょう。<br>
+            <div class="code">
+                if 5 < 10: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("5は10未満です") <br>
+                if 5 >= 10: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("5は10以下です")
+            </div>
+            <div class="console">
+                5は10未満です
+            </div>
+            と出力されるはずです。まあ、結果自体は当たり前ですが、コードを見ていきましょう。<br>
+            上のif文の条件式は、5 < 10なので、5が10未満のとき、中身のprintが実行されます。<br>
+            下のif文の条件式は、10 >= 5なので、5が10以上のとき、中身のprintが実行されます。<br>
+            上の条件式はTrue、下の条件式はFalseとなるので、上のif文の処理のみが実行されたわけですね。<br>
+            でも、これ、下のif文の使い方が、少し非効率ですね。<br>
+            下の条件式は、上の条件式の否定となっていることにお気づきでしょうか。<br>
+            上の条件式を否定してみると、<br>
+            「5 < 10である」の否定は「5 < 10ではない」、すなわち「5 >= 10」となります。<br>
+            つまり、下のif文は、上の条件式がTrueでない時に実行されるわけです。<br>
+            そこで、if文とセットで用いるのが、else文です。<br>
+            <br>
+            <span class="subsection">else文</span><br>
+            else文は、上に書いてある条件式がFalseの時実行されます。 <br>
+            else文の構文は、if文とほぼ同じで、<br>
+            <div class="code">
+                if 5 < 10: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("5は10未満です") <br>
+                else: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("5は10以下です")
+            </div>
+            <div class="console">
+                5は10未満です
+            </div>
+            と書きます。<br>
+            このelse文の注意点は、独立して書くことはできず、<br>
+            条件分岐(条件式で処理を変えるもの)の後につける、ということです。<br>
+            ちなみに、当たり前ですがelse文の後にelse文をつけることはできません。<br>
+            では、実際に、さっきのコードを改造していきます。<br>
+            <div class="code">
+                if 5 < 10: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("5は10未満です") <br>
+                else: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("5は10以下です")
+            </div>
+            <div class="console">
+                5は10未満です
+            </div>
+            出力は変わっていませんが、コードが若干短くなりましたね。<br>
+            else文の上のif文に条件をたくさんつければつけるほど、便利になります。<br>
+            では、以前解説した、変数を使って、<br>
+            テスト結果の点数を表すint型の変数pointを作って、<br>
+            pointが40未満ならC、pointが40以上70未満ならB、pointが70点以上ならAと表示してみます。<br>
+            どのように表せば良いでしょうか。<br>
+            「pointが40未満」を表す条件式は、 point < 40 でいいですね。<br>
+            「pointが40以上70未満」を表す条件式は、 40 <= point < 70 でよさそうです。 <br>
+            「pointが70以上」を表す条件式は、 70 <= point でいいですね。<br>
+            ですが、この3つの条件は、どれか1つがTrueなら、その他の2つはFalseです。<br>
+            つまり、今回もelseが使えそうですね。書いてみましょう。<br>
+            <div class="code">
+                point = 50 <br>
+                if point < 40: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("C") <br>
+                else: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if point < 70: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("B") <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;else: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("A")
+            </div>
+            <div class="console">
+                B
+            </div>
+            と出力されます。<br>
+            だいぶ複雑になってきたような気もしますが、大丈夫でしょうかね。<br>
+            このコードが表しているのは、さっきの3つの条件をelseを使って書き換えたものです。<br>
+            このコードを、日本語に直してみます。<br>
+            「 <br>
+            point変数に、intの値として50を代入する <br>
+            もし point変数が40未満なら、 C を表示する <br>
+            そうでなければ、 <br>
+            　もしpoint変数が70未満なら、 B を表示する <br>
+            　そうでなければ、 A を表示する <br>
+            」<br>
+            ということですね。<br>
+            変数を定義した後、point < 40がTrueならCが表示されます。 <br>
+            そうでない場合、すなわち 40 <= point である場合、 <br>
+            もしpoint < 70である、すなわち 40 <= point < 70ならば、Bが表示されます。 <br>
+            そうでない場合、すなわち 40 <= 70 < pointならば、Aが表示されます。 <br>
+            分かっていただけましたかね。 <br>
+            でも、私からみても、このコードはかなりわかりにくいです。<br>
+            もっとわかりやすくしたいところですね。 <br>
+            そこで、elif文というものを使います。<br>
+            <br>
+            <span class="subsection">elif文</span><br>
+            elif文とは、else + ifがくっついた文です。<br>
+            この名前から分かるように、 <br>
+            elif文は、上にある条件式がFalseだった時、 <br>
+            もしelif文の条件式がTrueだったら実行されます。 <br>
+            構文は、以下のようになっています。 <br>
+            「<br>
+            elif bool型の値: <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ここに処理<br>
+            」<br>
+            if文とほぼ同じですね。 <br>
+            このelif文の注意点も、独立して書くことはできず、<br>
+            条件分岐の後につける、ということです。<br>
+            else文と違い、elif文の後にelif文をつけることもできます。<br>
+            では、先ほどの点数のコードを、ifとelifとelseを使って書いてみましょう。 <br>
+            <div class="code">
+                point = 50 <br>
+                if point < 40: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("C") <br>
+                elif point < 70: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("B") <br>
+                else: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("A") <br>
+            </div>
+            <div class="console">
+                B
+            </div>
+            出力は同じですが、シンプルでわかりやすいコードになりましたね！ <br>
+            point変数にint型の値50を入れて定義するところは同じです。<br>
+            上のif文で、point < 40の処理を書き、 <br>
+            真ん中のelif文で、上のif文がFalseで、かつpoint < 70である <br>
+            すなわち40 <= point < 70のときの処理を書き、<br>
+            下のelse文で、上のif文も真ん中のelif文もFalseの時の処理、 <br>
+            つまり70 < pointの時の処理を書いています。 <br>
+            すべてただの日本語で言い換えれば、 <br>
+            「 <br>
+            point変数に、intの値として50を代入する <br>
+            もし point変数が40未満なら、 C を表示する <br>
+            そうでなくて、もしpoint変数が70未満なら、 B を表示する <br>
+            そうでもなければ、 A を表示する <br>
+            」<br>
+            となります。 <br>
+            <br>
+            if文とelif文とelse文をすべてマスターすれば、色々なコードが書けます。 <br>
+            というか、しっかりとした作品を作りたい時は、条件分岐は必ず使います。 <br>
+            例えば、ゲームを作る時、条件分岐を使わないとどうなるでしょう。 <br>
+            条件分岐がなければ、プレイヤーの操作で動くゲームは作れません。<br>
+            プレイヤーが一切操作できないゲーム、つまりアニメになってしまいます。<br>
+            条件分岐はマスターしておいて損は絶対ないですよ！<br>
+            <br>
+            条件分岐には、「三項演算子」という書き方もあります。 <br>
+            特定の場面で条件分岐を短く書ける方法ですが、これはまた後ほど説明します。 <br>
+            </p><br>
+            <span class="section">2. 繰り返し</span><br>
+            <p>
+            お次は、繰り返しの処理についてお伝えしていきます！<br>
+            突然ですが、一般的に、「人間の方が苦手で、コンピュータの方が得意なこと」<br>
+            と言われていることっていったらなんでしょうか。色々あると思いますが、<br>
+            私は「同じ(またはほぼ同じ)ことを繰り返し行うこと」だと思います。<br>
+            人間には、コンピュータと違って「感情」がありますから、<br>
+            同じことを繰り返ししているうちに、面倒になってきたり、飽きたりします。<br>
+            その一方、コンピュータは、同じことの繰り返しをする仕事でも、<br>
+            何一つ文句を言わずにせっせと処理してくれますよね。<br>
+            (なんだか可愛くて、これが私がPC好きの理由の一つでもあるのですが。) <br>
+            そこで、コンピュータが得意な「繰り返し」の処理をやってみましょう。<br>
+            <span class="subsection">for文</span><br>
+            for文は、Pythonで繰り返しの処理を行うためのものです。<br>
+            for文の構文を見ていきましょう。<br>
+            「<br>
+            for 定義する変数 in オブジェクト: <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ここに処理<br>
+            」<br>
+            というように書きます。条件分岐と似ていますね。<br>
+            このfor文は、「オブジェクト」という概念があったりと、少し複雑なので、<br>
+            とりあえず実際に書いて動作をみてみましょう。<br>
+            <div class="code">
+                for i in range(10): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("おはようございます") <br>
+            </div>
+            <div class="console">
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます<br>
+                おはようございます
+            </div>
+            このようになります。まずはざっと見ていきましょう。<br>
+            まず、for文で、iという変数を定義しています。名前はなんでも構いません。<br>
+            そして、「in」と書いていますが、この「in」というコードについて解説すると<br>
+            for文の理解がややこしくなるので、まずは「for文とセットでinを使う」と覚えてください。<br>
+            その後、range(10)と書いてあります。<br>
+            これについては、後ほど実践の時に説明します。<br>
+            今は、実際には若干違いますが、0から9までの配列を表していると思ってください。<br>
+            例えば、range(5)なら、0から4までの配列を表していると思ってください。<br>
+            これ、配列の番号と似ていますね。0からスタートして5つ分の数字だから4なのです。<br>
+            さて、かるーく目を通しましたので、詳しく解説するため、もう一個コードを書きます。<br>
+            <div class="code">
+                for i in range(5): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(i) <br>
+            </div>
+            <div class="console">
+                0<br>
+                1<br>
+                2<br>
+                3<br>
+                4<br>
+            </div>
+            では、このコードを使って、詳しく解説していきます。<br>
+            まず、forを書き、次に、変数iを定義します。<br>
+            そして、in range(5)で、配列[0,1,2,3,4]を使って計5回繰り返し、<br>
+            for文の中のprintで、iの値を表示させています。<br>
+            このiの値、繰り返すごとに1ずつ増えていますね。<br>
+            先ほど示した、for文の使い方と照らし合わせてみると、<br>
+            「<br>
+            for 定義する変数 in オブジェクト: <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ここに処理<br>
+            」<br>
+            オブジェクトのところにrange(5)を使っています。<br>
+            つまり、for文で使うオブジェクトは、基本的には配列が入ります。<br>
+            そして、繰り返すごとに、配列の次の値をチェックしています。<br>
+            ちなみに、配列の型はなんでも大丈夫です。<br>
+            これを踏まえて、最初に文字列型配列を定義し、<br>
+            rangeだった部分に直接配列を入れてみましょう。<br>
+            <div class="code">
+                classmate = ["太郎","花子","野介"] <br>
+                for name in classmate: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(name) <br>
+            </div>
+            <div class="console">
+                太郎<br>
+                花子<br>
+                野介
+            </div>
+            こうしてみると、かなりわかりやすいのではないでしょうか。<br>
+            classmate配列を0番目から一個ずつチェックしていき、<br>
+            チェックした結果をnameに入れて、それをfor文の中の処理で使っています。<br>
+            このように、配列の値を使って繰り返しているのですね。<br>
+            <br>
+            基本的には、ただ何回か繰り返したいだけならrangeを使い、<br>
+            今回のように、配列を活用したい場合に配列を使うと効果的です。<br>
+            ちなみに、for文を使って、配列の中身を1つずつ確認しながら処理をすることを、<br>
+            for文で配列を「回す」ということがあります。<br>
+            また、処理の中でbreakと書くことで、<br>
+            繰り返しを強制的に終了することもできます。<br>
+            実際にやってみましょうか。<br>
+            <div class="code">
+                for i in range(5): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if 2 < i :<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(i) <br>
+                print("繰り返し終了！")
+            </div>
+            <div class="console">
+                0 <br>
+                1 <br>
+                2 <br>
+                繰り返し終了！
+            </div>
+            このコードでは、iが2より大きいとき、breakしています。<br>
+            繰り返しを始めると、i=0がprintされ、i=1がprintされ、<br>
+            i=2がprintされ、i=3のとき、printする前にbreakしています。<br>
+            breakすると、for文内部のbreak以下の処理は無視され、<br>
+            繰り返しを終了し、printで「繰り返し終了」と表示します。<br>
+            <br>
+            さて、for文による繰り返しをやってみました。<br>
+            ですが、このfor文、一つ欠点があるのです。<br>
+            それは、繰り返したい回数がわからなかったり、<br>
+            配列を元に繰り返すわけではないとき、どうにもできないことです。<br>
+            例えば、以下のような問題が出たとき、どうしましょうか。<br>
+            「5万円の商品を買うため、最初314円あった貯金箱に、一日123円ずつ貯金しています。 <br>
+            　この商品を買えるようになるまで、何日かかるでしょうか。」<br>
+            計算機を使っても、結構面倒な計算ですね。<br>
+            でも、何日かかるか、つまり、何回繰り返すのかがわからない時、<br>
+            for文を使って求めさせることはできませんね。<br>
+            そんな時に使えるのが、while文です！<br>
+            <br>
+            <span class="subsection">while文</span><br>
+            while文は、条件をつけて繰り返しをするためのものです。<br>
+            while文の構文は、<br>
+            「<br>
+            while 条件式: <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ここに処理<br>
+            」<br>
+            と書きます。 <br>
+            この時、条件式がFalseになるまで常時実行し続けます。<br>
+            for文と同じように、breakで繰り返しを終了することができます。<br>
+            注意点として、条件式がFalseになることがないもの、例えば、直接Trueを書いたとき、<br>
+            常にwhile文内部の処理が実行され続けるため、コンピュータがフリーズしたりする可能性があります。<br>
+            これを避けるため、もしTrueなどを入れた場合は、途中でbreakが呼ばれるようにしてください。<br>
+            (私は、while文で前のパソコンをたくさんいじめてきました...) <br>
+            では、まずは1から10を表示するプログラムを書いてみましょうか。<br>
+            <div class="code">
+                number = 1 <br>
+                while number <= 10: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(number) <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;number+=1 <br>
+                print("while文終了！")
+            </div>
+            <div class="console">
+                1<br>
+                2<br>
+                3<br>
+                4<br>
+                5<br>
+                6<br>
+                7<br>
+                8<br>
+                9<br>
+                10<br>
+                while文終了！
+            </div>
+            このコードでは、まず変数numberをint型の値1を入れて定義します。<br>
+            while文で、number <= 10がTrueの間、常に繰り返すようにします。 <br>
+            そしてwhile文の中で、print(number)をして、numberの値を表示します。<br>
+            その文の中でnumber += 1をして、繰り返しの中でnumberを1増加させます。<br>
+            そして、numberが11になった時、number <= 10がFalseになるため、 <br>
+            while文の繰り返しを終了し、printで「while文終了！」と表示しています。<br>
+            しっかり動作しましたか？フリーズしていませんか？大丈夫ですかね。 <br>
+            for文と違って複雑なことはなく、if文と似たようなものなので、<br>
+            これといって解説は必要なさそうですね。 <br>
+            では、先ほどの問題をやってみます。<br>
+            「5万円の商品を買うため、最初314円あった貯金箱に、一日123円ずつ貯金しています。 <br>
+            　この商品を買えるようになるまで、何日かかるでしょうか。」<br>
+            では、while文を利用して求めてみましょう。<br>
+            <div class="code">
+                money = 314 <br>
+                days = 0 <br>
+                while money <= 50000: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;money+=123 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;days+=1 <br>
+                print(days)
+            </div>
+            <div class="console">
+                404
+            </div>
+            404日かかるようですね。<br>
+            数字が複雑なので暗算しずらく、計算機での計算も面倒です。<br>
+            そんな時に、このようなプログラムがサクッと書けると便利ですよ！<br>
+            プログラムで四則演算で計算することもできますが、<br>
+            (50000-314)/123 = 403.95...となり、概数として切り上げする必要があります。<br>
+            四捨五入や切り上げ、切り捨てのやり方については、後ほど説明しますが、<br>
+            コードを見ても、わかりやすさが全然違いますよね。<br>
+            四則演算の方が、コードは短いので、最適なコードですが、個人的には、<br>
+            このような短いプログラムを書くだけなら、量はあまり気にする必要はないと思います。<br>
+            while文の書き方だと、まず所持金をmoney変数で表して、<br>
+            繰り返すごとに、123円たまって、1日進んで行き、50000円貯まったら終了。<br>
+            という流れがとてもわかりやすいですね。<br>
+            <br>
+            では、次に、while文の中でもbreakを使ってみましょう。<br>
+            基本的には、while文は条件式を元に動作するので、<br>
+            条件式に繰り返し終了の条件を書くことが多いですが、<br>
+            いくつかの条件をつけて、それぞれで処理を分けたいときは、<br>
+            breakを使うことが多いです。<br>
+            先ほどの50000円の商品のシチュエーションを少し変えてみます。<br>
+            「8万円のスマホiを買うため、最初1000円あった貯金箱に、一日300円ずつ貯金しています。 <br>
+            　貯金開始からちょうど1年(365日とします)後、最新でおトクな6万円のスマホaが発売されました。<br>
+            　8万円が貯まる前にスマホaが発売された場合、スマホaを購入します。<br>
+            　ただし、お金が足りない場合は足りるまで待ちます。<br>
+            　8万円が貯まった時点でスマホaが発売されていない場合、スマホiを購入します。<br>
+            　貯金から何日後にどちらを購入することになるでしょうか。」<br>
+            さあ、かなりアタマで考えるのが面倒な問題になりました。<br>
+            コンピュータに任せてしまいましょう！<br>
+            どのようなプログラムになるでしょうか。<br>
+            <div class="code">
+                money = 1000 <br>
+                days = 0 <br>
+                while True: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;money+=300 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;days+=1 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if 365 <= days and 60000 <= money: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("スマホaを購入") <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if 80000 <= money: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("スマホiを購入") <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break <br>
+                print(days)
+            </div>
+            <div class="console">
+                スマホiを購入<br>
+                264
+            </div>
+            264日後にスマホiを購入するようです。<br>
+            直接求める計算式を考えるのが面倒なのでわかりませんが、確かめ算はできますね。<br>
+            1000+300*264=80200になるようです。しっかり264日で80000円を超えていますね。<br>
+            プログラムの仕組みは、今まで説明してきた通りですが、<br>
+            まず先ほどのプログラムの数値を新しいものに変更しています。<br>
+            そして、while Trueで、繰り返しの処理の中でbreakが呼ばれる場で常に繰り返します。<br>
+            そして、もし貯金開始から365日が過ぎていて、かつお金が600000円以上ならスマホaを購入して、<br>
+            もし80000円が貯まっていたらスマホiを購入して、繰り返しを終了します。<br>
+            どちらかのif文の条件がTrueになったら、breakが呼ばれますから、どちらかが呼ばれた時点で<br>
+            while文の処理は強制的に終了され、最後、貯金した日数であるdaysをprintしています。<br>
+            では、せっかくなので、1日に貯金する量を変えてみましょうか。 <br>
+            1日300円ではなく、1日100円だったらどうなんでしょう。<br>
+            先ほどのコードの、money+=300のところをmoney+=100に変えてみました。<br>
+            <div class="console">
+                スマホaを購入<br>
+                590
+            </div>
+            365日後に発売されるスマホaを590日後に購入するということは、<br>
+            スマホaの発売日には60000円貯まっていなかったということですね。<br>
+        </p><br>
+        <br><br>
+        このように、if、else、elif、for、whileを使いこなすだけで、<br>
+        実に色々なことができます！ぜひマスターしてくださいね！<br>
+            <hr class="pageCtrlLine">
+            <div class="pageCtrlArea">
+                <button class="prevPage" onclick="location.href='Chapter4.html'">前のページ</button>
+                <button class="nextPage" onclick="location.href='Chapter6.html'">次のページ</button>
+            </div>
+        </div>
+    </body>
+</html>

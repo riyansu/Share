@@ -1,0 +1,287 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HowToPython - Chapter4</title>
+        <link rel="stylesheet" href="Assets/style.css">
+    </head>
+    <body>
+        <span class="Sidebar">
+            <span class="S_homeBtn" onclick="location.href='../index.html'">
+                <img src="Assets/HomeLogo.svg" width="100%">
+            </span>
+            <span class="S_space"></span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter1.html'">
+                1
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter2.html'">
+                2
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter3.html'">
+                3
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter4.html'" style="border: 2px solid darkblue;background-color: rgba(255,255,255,0.7);">
+                4
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter5.html'">
+                5
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter6.html'">
+                6
+            </span>
+            <span class="S_space"></span>
+            <span class="S_advBtn" onclick="location.href='ChapterAdv1.html'">
+                1
+            </span>
+        </span>
+        <div class="Main">
+            <div class="title">Chapter4 : 変数とは何か知ろう</div>
+            <hr class="title">
+            <span class="section">1. 基本の変数</span><br>
+            <p>
+            <span class="subsection">変数とは</span><br>
+                さて、前回は、色々な値について解説してきました。<br>
+                今回は、その値を保存する場所、「変数」について解説します。<br>
+                変数とは、数学でいう例えば3x + 5 = 8のxの値のことです。<br>
+                よく、値を保存しておくための「箱」と説明されます。<br>
+                変数には種類があり、その種類を変数の「型」と呼びます。<br>
+                Pythonでの変数の型には、主に<br>
+                int型、float型、string型、bool型があります。それぞれ、<br>
+                整数、少数、文字列、真偽値という種類を表しています。<br>
+                前回、文字列と数字の足し算をしてみたとき、「Type」について解説しましたね。<br>
+                Typeとは、「値の種類、即ち数字や文字列という種類のこと」と書きました。<br>
+                この「値の種類」とは、この「型」のことです。<br>
+                そして、変数を新しく作ることを、「変数を定義(宣言)する」と呼びます。<br>
+                Pythonでは、変数を定義するときは、「変数名 = 変数の値」と定義します。<br>
+                (別の言語では、「変数の型 変数名 = 変数の値」と定義したりすることがあります) <br>
+                また、変数をプログラムの中で値として直接利用するとき、そのまま変数名を書くことで利用できます。<br>
+                それでは、実際に変数を使ってみましょう。<br>
+                <div class="code">
+                    name = "太郎" <br>
+                    print(name)
+                </div>
+                <div class="console">'太郎'</div>
+                この場合、変数nameを"太郎"というstring型の値で定義しています。<br>
+                そして、printに変数nameを直接書くことで、nameの中身の値を見ることができます。<br>
+                このように、変数の値を見ることを、「参照」といいます。<br>
+                Pythonでは、変数を定義して始めて入った値の型が、その変数の型となります。<br>
+                例えば、<br>
+                「id = "123"」と書けば、idはstring型の変数となります。<br>
+                「id = 123」と書けば、idはint型の変数となります。<br>
+                「id = 1.23」と書けば、idはfloat型の変数となります。<br>
+                「id = True」と書けば、idはbool型の変数となります。<br>
+                このように、最初に値を入れたとき、変数の型が決まります。<br>
+                そして、定義した後も、「変数名 = 値」と書けば、値を変えられます。<br>
+                このように、変数に値を入れることを、「代入」といいます。<br>
+                <br>
+                また、変数の値を、現在の状態を用いて変えたいとき、<br>
+                「+=」や「-=」、「*=」や「/=」を使って、変数の値を使ってそのまま計算できます。<br>
+                言葉だけではわかりにくいと思うので、やってみましょう。<br>
+                <div class="code">
+                    name = "太郎" <br>
+                    name *= 2
+                    print(name)
+                </div>
+                <div class="console">太郎太郎</div>
+                このコードでは、変数nameを'太郎'というstring型の値を入れて宣言し、 <br>
+                name *= 2とすることで、変数nameに*2しています。<br>
+                文字列型の値の掛け算をすると、掛ける数の分複製して連結するんでしたね。<br>
+                もちろん、四則演算(+-*/)すべて同じようにできますし、<br>
+                int型、float型、string型全ての変数で同じように使えます。<br>
+                (もちろん、string型変数に-=、/=の表現は使えません。)<br>
+                また、変数の注意点として、Pythonは上から下に実行されることを覚えてください。<br>
+                今回のコードは、変数nameを"太郎"と言う値を入れて宣言し、nameの値を掛けて表示しています。<br>
+                逆に実行すると、変数nameを定義する前にnameの値を使用しているため、エラーになります。<br>
+                <br>
+                <span class="subsection">変数の命名</span><br>
+                変数の宣言時には、自由に名前をつけることができます。<br>
+                ただし、以下のすべての条件を満たす必要があります。<br>
+                ・変数名が半角英数字または全角と、_(アンダーバー)のみで構成されている<br>
+                ・変数名にスペースが含まれていない<br>
+                ・変数名が数字で始まっていない<br>
+                ・変数名が予約語になっていない<br>
+                予約語とは、False,Trueなどなど、すでにプログラムに組み込まれている言葉(33個程度)です。<br>
+                すべて覚えておく必要はありませんが、使えない変数名もあるということを覚えておいてください。<br>
+                また、変数名は、なるべくその変数の意味を表すようにしましょう。<br>
+                例えば、以下の2つのコードを比較してみましょう。<br>
+                <div class="code">
+                    price = 100<br>
+                    tax_rate = 8 <br>
+                    print(price + price/100*tax_rate)
+                </div>
+                <div class="code">
+                    a = 100<br>
+                    b = 8 <br>
+                    print(a + a/100*b)
+                </div>
+                <div class="console">108</div>
+                どちらも同じ結果になります。<br>
+                何を計算しているコードかわかりますか？<br>
+                正解は、値段と税率を元に、料金を求めるコードです。<br>
+                priceは値段、tax rateは税率という意味です。<br>
+                対して、aとbはただのアルファベットです。<br>
+                圧倒的に上の方が読みやすいですよね。<br>
+                なるべく意味のある英語を使って命名しましょう。<br>
+            </p><br>
+            <span class="section">2. 特殊な変数 配列</span><br>
+            <p>
+                配列は、使えるようになるとすごく便利になりますよ！！<br>
+                配列は、簡単に言えば、型が同じ基本の変数を連ねたものです。<br>
+                使うメリットから説明していきます。<br>
+                例えば、現実世界のことで考えてみましょう。<br>
+                ある学校の学年に、1クラスあたり30人で5つのクラスがあったとします。<br>
+                あなたがもし、そのうちの1クラスの担任だったとき、<br>
+                一人一人の名前が書かれた紙150枚の中から自分のクラスの人を探し出して出欠をとるか、<br>
+                自分のクラス全員の名前が書かれた名簿を使って出欠をとるか、どちらがいいでしょうか。<br>
+                もしかしたら、前者がいい人もいるかもしれませんが、大抵の人は、<br>
+                後者の方が管理しやすくて良いのではないでしょうか。<br>
+                そのように、1まとめに値を扱うことができるのが配列です。<br>
+                配列は、「配列名 = [値,値,値,値,...]」というように、<br>
+                好きな数だけ連結させて、変数のように宣言することが可能です。<br>
+                配列名には、変数名と同じルールが適用されます。<br>
+                実際に、仮の生徒の名前を入れて使ってみましょう。<br>
+                <div class="code">
+                    member = ["太郎","一郎","二郎","三郎","四郎","五郎"]<br>
+                    print(member)
+                </div>
+                <div class="console">
+                    ['太郎', '一郎', '二郎', '三郎', '四郎', '五郎']
+                </div>
+                このような結果になったはずです。<br>
+                配列は、全てが同じ型であれば、どんな型でも入れられます。<br>
+                また、「配列名[番号]」というように書くことで、<br>
+                配列中の指定した番号の値にアクセスできます。<br>
+                このとき、配列のそれぞれの値を「要素」と呼びます。<br>
+                先ほどのコードのmemberの後に番号をつけて実際にやってみましょう。<br>
+                <div class="code">
+                    member = ["太郎","一郎","二郎","三郎","四郎","五郎"]<br>
+                    print(member[1])
+                </div>
+                <div class="console">
+                    一郎
+                </div>
+                このような結果になります。ここで、「あれ？」と思った方もいるかもしれません。<br>
+                配列memberの1番目は、太郎です。しかし、結果は一郎です。<br>
+                ここが落とし穴になりやすいのですが、大抵のプログラミング言語では、<br>
+                配列の最初の要素は0番目として扱われます。(Lua言語などは例外)<br>
+                よって、太郎が0番目、一郎が1番目となるため、「一郎」が表示されます。<br>
+                また、アクセスした要素は、そのまま編集もできます。<br>
+                memberの宣言とprintの間で、値を編集してから、member配列をprintしましょう。<br>
+                以下のコードもやってみましょう。<br>
+                <div class="code">
+                    member = ["太郎","一郎","二郎","三郎","四郎","五郎"]<br>
+                    member[2] = "次郎"<br>
+                    print(member)
+                </div>
+                <div class="console">
+                    ['太郎', '一郎', '次郎', '三郎', '四郎', '五郎']
+                </div>
+                配列の二郎が次郎に変わりました。<br>
+                <br>
+                ちなみに、この配列も、変数の一種です。<br>
+                変数と同じように、「型」という表現で、「リスト型」と呼ばれることもあります。<br>
+                この「配列」は後から大活躍します。お楽しみに！<br>
+            </p><br>
+            <span class="section">特殊な変数 辞書</span><br>
+            <p>
+                みなさん、辞書は好きですか？嫌いですか？<br>
+                そんなことは置いておいて、辞書です。<br>
+                辞書といえば、語句と意味がセットになっていますよね。<br>
+                そのままです。<br>
+                辞書では、KeyとValueを用いて、変数を管理できます。<br>
+                こちらも、メリットから、たとえながら話していきます。<br>
+                先ほどの「配列」を説明した時と同じ場面を想像してください。<br>
+                配列を使って、自分のクラスの生徒一覧がわかりました。<br>あ
+                では、次は先生ではなく、生徒になったとします。<br>
+                自分は右端にいるので、隣にはAさん一人しか生徒がいません。<br>
+                そこで、そのAさんのことをしっかり覚えたいと思ったとします。<br>
+                プログラミングの考えを使って覚える場合、どうしましょうか。<br>
+                覚える内容は、年齢、好きな食べ物、勉強が得意かどうかだとします。<br>
+                年齢は、int型、好きな食べ物は、string型、勉強はbool型で記憶すれば良さそうです。<br>
+                ageとfavorite_foodとgood_at_studyingという変数3つを作っても良いでしょう。<br>
+                しかし、それでは、別の人Bさんのことも覚えたくなった時、どうしましょうか。<br>
+                A_ageとA_favorite_foodとA_good_at_studyingという変数を作っておき、<br>
+                B_ageとB_favorite_foodとB_good_at_studyingという変数を作ることもできますね。<br>
+                しかし、これだと名前がごちゃごちゃになっていきます。<br>
+                配列は、すべて同じ方でなければ使えないので、ダメですね... <br>
+                そこで、辞書の登場です。辞書は、<br>
+                「辞書名 = {'キー':値,'キー':値,'キー':値...}」というように使います。<br>
+                キーは、文字列型の値が入りますので、基本的に好きな名前にできます。<br>
+                スペースや記号など、使い放題です。<br>
+                ただし、こちらも意味のある名前にしましょう。<br>
+                先ほどの例を使って、プログラムを書いてみましょう。<br>
+                Aさんは、15歳、好きな食べ物は寿司、勉強は得意だとします。<br>
+                <div class="code">
+                    A = {"age":15, "favorite food":"sushi", "good at studying":True} <br>
+                    print(A)
+                </div>
+                <div class="console">
+                    {'age': 15, 'favorite food': 'sushi', 'good at studying': True}
+                </div>
+                綺麗に分けて値を入れられました。<br>
+                値にアクセスするには、「辞書名['アクセスしたいキー']」でOKです。<br>
+                実際にやってみます。<br>
+                printのAの部分のみ少し変更します。<br>
+                <div class="code">
+                    A = {"age":15, "favorite food":"sushi", "good at studying":True} <br>
+                    print(A['age'])
+                </div>
+                <div class="console">
+                    15
+                </div>
+                このようにして、Aさんのageにアクセスすることができました。<br>
+                配列と同じように、値を変えることもできます。<br>
+                <div class="code">
+                    A = {"age":15, "favorite food":"sushi", "good at studying":True} <br>
+                    A['favorite food']="natto" <br>
+                    print(A)
+                </div>
+                <div class="console">
+                    {'age': 15, 'favorite food': 'natto', 'good at studying': True}
+                </div>
+                勝手にAさんの好きなものを寿司から納豆に変更できました！<br>
+                こちらも、かなり使いますよ！<br>
+                <br>
+                ところで、配列と辞書、どちらも「特殊な変数」という名前がついていることに気が付いたでしょうか。<br>
+                そう、配列も、辞書も、どちらも変数なのです。<br>
+                そして、どちらも、中に変数を保存することができました。<br>
+                つまり、配列の中に配列を入れたり、辞書を入れたりすることがでるのです。<br>
+                試しに、配列の中に配列を入れることで、1クラス(10人とします)の中の3グループを表してみましょう。<br>
+                ここで、classという名前の配列を作りたいところですが、<br>
+                前お伝えした「予約語」に、classという言葉が含まれています。<br>
+                そこで、今回もmemberにします。<br>
+                <div class="code">
+                    member = [["A","B","C"],["D","E","F"],["G","H","I","J"]] <br>
+                    "print(member[0])
+                </div>
+                <div class="console">
+                    ['A','B','C']
+                </div>
+                こうすることで、クラスの3グループを別々にしたうちの0班のグループを取り出せました。<br>
+                では、勝手に0班のAさんをTさんにしてみましょう。<br>
+                配列の中の配列にアクセスするには、<br>
+                「配列名[番号][番号]...」というように、[]で番号を繋げていけば、どこまでも深くアクセスできます。<br>
+                <div class="code">
+                    member = [["A","B","C"],["D","E","F"],["G","H","I","J"]] <br>
+                    member[0][0] = "T" <br>
+                    print(member)
+                </div>
+                <div class="console">
+                    [['T', 'B', 'C'], ['D', 'E', 'F'], ['G', 'H', 'I', 'J']]
+                </div>
+                勝手に0班の0番目のAさんをTさんに変えることができましたね！<br>
+                変数の中に変数を入れる(入れ子と呼びます)テクニックは、<br>
+                活躍する機会は多くありませんが、使うときは大活躍します。<br>
+                ぜひ覚えておいてください！<br>
+            </p><br>
+            <br>
+            他にも、先ほど述べたclassというものがあったりしますが、<br>
+            これは後ほど解説します。次回は、ロジカルなものをやっていきましょう！<br>
+            <br>
+            <hr class="pageCtrlLine">
+            <div class="pageCtrlArea">
+                <button class="prevPage" onclick="location.href='Chapter3.html'">前のページ</button>
+                <button class="nextPage" onclick="location.href='Chapter5.html'">次のページ</button>
+            </div>
+        </div>
+    </body>
+</html>

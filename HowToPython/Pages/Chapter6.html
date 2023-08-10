@@ -1,0 +1,273 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HowToPython - Chapter5</title>
+        <link rel="stylesheet" href="Assets/style.css">
+    </head>
+    <body>
+        <span class="Sidebar">
+            <span class="S_homeBtn" onclick="location.href='../index.html'">
+                <img src="Assets/HomeLogo.svg" width="100%">
+            </span>
+            <span class="S_space"></span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter1.html'">
+                1
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter2.html'">
+                2
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter3.html'">
+                3
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter4.html'">
+                4
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter5.html'">
+                5
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter6.html'" style="border: 2px solid darkblue;background-color: rgba(255,255,255,0.7);">
+                6
+            </span>
+            <span class="S_space"></span>
+            <span class="S_advBtn" onclick="location.href='ChapterAdv1.html'">
+                1
+            </span>
+        </span>
+        <div class="Main">
+            <div class="title">Chapter6 : 効率的に作ろう</div>
+            <hr class="title">
+            さてさて、ここまで、Pythonのコードについて色々やってきました。<br>
+            実は、ここまでやってきたほとんどのことは、Python以外の言語でもほぼ同じように使えます。<br>
+            今回もその続きですが、このページが最後ですので、張り切っていきましょう！<br>
+            <br>
+            <span class="section">1. 関数</span><br>
+            <p>
+            1つのプログラムの中で、同じ処理を繰り返す時、while文や for文が良いとお伝えしました。<br>
+            その中でも、配列を元に繰り返すなら、for文が良いとお伝えしましたね。<br>
+            では、「同じ処理」ではなく、「似たような処理」を別々の場面で何度も使うとき、<br>
+            どうするべきでしょうか。そんな時に便利なのが、関数です。<br>
+            <br>
+            <span class="subsection">関数の基本</span><br>
+            関数は、数学の「関数」とほぼ同じ役割をしていて、 <br>
+            簡単に言えば、プログラムを名前のついたグループにしてとっておいて、<br>
+            そのグループの名前を指定すれば、とっておいたプログラムが実行できる、というものです。<br>
+            構文は、定義するときは <br>
+            「 <br>
+            def 関数名(引数): <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ここに処理
+            」 <br>
+            というようになっています。実際に使うときは<br>
+            「 <br>
+            関数名(引数) <br>
+            」<br>
+            と書くことで、関数を実行することができます。<br>
+            関数名はなんでもいいですが、変数名と同じルールが適用されます。<br>
+            では、実際に使って、関数についてみていきましょう。<br>
+            まずは、「こんにちは」「いい天気ですね」とprintするhello関数を作ってみましょうか。<br>
+            <div class="code">
+                def hello(): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("こんにちは") <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print("いい天気ですね") <br>
+                hello()
+            </div>
+            <div class="console">
+                こんにちは <br>
+                いい天気ですね
+            </div>
+            まず、一行目でhello関数を定義しており、<br>
+            二行目で関数に「こんにちは」と「いい天気ですね」をprintする処理を入れ、<br>
+            三行目でhello関数を使っています。<br>
+            このように、関数を使えば、処理をグループ化して、後からそのグループを使うことができます。<br>
+            このとき、関数を使うことを、関数を「呼び出す(呼ぶ)」と言います。<br>
+            この関数の内容が長くなればなるほど、関数を使うメリットが大きくなります。<br>
+            でもこれでは、関数の恩恵の一部しか受けられていません。<br>
+            <br>
+            <span class="subsection"><ruby>引数<rt>ひきすう</rt></ruby></span><br>
+            関数の定義のしかたと使い方で、「引数」というものが出てきましたね。<br>
+            引数は、関数を実行するときに、関数に対して値を渡し、<br>
+            関数の処理の中で、渡された値を変数として使用するという仕組みです。<br>
+            では、実際に、<br>
+            「関数の引数に名前と時刻を入れることで、その名前に対して挨拶をする」<br>
+            という関数を作ってみましょうか。(時刻はテキトーでいいです)<br>
+            <div class="code">
+                def greet(name, time): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if 6 <= time < 10: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(name+"さん、おはようございます") <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;elif 10 <= time <= 15: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(name+"さん、こんにちは") <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;elif 25 <= time : <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(name+"さん、異世界ですか？") <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;else: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(name+"さん、こんばんは") <br>
+                greet("太郎", 12)
+            </div>
+            <div class="console">
+                太郎さん、こんにちは
+            </div>
+            引数の値を色々変えて試してみてください。<br>
+            このように、関数の定義をするときにあらかじめ引数を変数として定義し、<br>
+            実際に関数を使用するときに引数に値を代入することができます。<br>
+            もちろん、配列や辞書を代入することも可能です。<br>
+            このとき、引数に値を代入することを、関数に引数を「渡す」といいます。<br>
+            引数は、いくつあっても、カンマ(,)で区切って渡せば大丈夫です。<br>
+            ただし、関数を定義したときの引数の数と、実際に使用するときの引数の数は<br>
+            同じになるようにしないと、エラーが発生します。<br>
+            また、関数を定義したときには、引数の値の型は決まらないので、<br>
+            実際に使用するときに渡した値によって型が決まります。<br>
+            関数内の処理で型を間違えないようにしてください。<br>
+            <br>
+            まだあと一つ、関数の恩恵を受けられます。それが、返り値(戻り値)です。<br>
+            <br>
+            <span class="subsection">返り値(戻り値)</span><br>
+            返り値は、関数から値を受け取ることができる、という仕組みです。<br>
+            関数内で、「return 返したい値」というように書きます。<br>
+            先ほど提示した関数の書き方には書いていませんでしたね。<br>
+            言葉で言うよりプログラムを実行した方が早いと思うので、書いてみましょう。<br>
+            sum関数で、2つの引数の和をreturnするプログラムを書いてみます。<br>
+            <div class="code">
+                def sum(a, b): <br>
+                &nbsp;&nbsp;return a + b <br>
+                print(sum(10,20)) 
+            </div>
+            <div class="console">
+                30
+            </div>
+            このように、関数の中で「return 値」とすることで、<br>
+            その関数全体の値がreturnされた値になります。<br>
+            ここでは、sum関数を定義し、引数a,bを定義しておき、<br>
+            sum関数が実行されると、a+bの結果をreturnするようにしています。<br>
+            関数外で、printでsum(10,20)をすることで、sum(10,20)がreturnされた<br>
+            30として扱われるため、30がprintされます。<br>
+            また、returnで返り値を使い、変数などに代入することを、<br>
+            関数が値を「返す」といいます。<br>
+            注意点は、関数の中でのreturnは、for文やwhile文の中でいうbreakと同じということです。<br>
+            つまり、関数内で、returnした後の処理を書いても、実行されずに終わってしまいます。<br>
+            <br>
+            さて、ここまで関数について色々やってみましたね。<br>
+            ここで、気付くことはありませんか？<br>
+            そう、print(表示したい値)で、値を表示させていましたが、このprint、実は関数なんです！<br>
+            printの()の中に入れていた値は、print関数の引数です！<br>
+            for i in range(10)の、range(数字)も、実は関数なんです！<br>
+            つまり、プログラミングの複雑な機能は、大抵小さな機能からできているんです！<br>
+            これを知っておくと、エラー解決の役に立ったりしますよ！<br>
+            </p><br>
+            <span class="section">2. クラス</span><br>
+            <p>
+            とうとう最後まで来ましたね。最後は、「クラス」です。<br>
+            この「クラス」を理解すれば、Pythonの基盤は完成です！<br>
+            今まで解説した内容の集大成のような機能なので、ぜひ覚えてください！<br>
+            個人的に、Pythonのクラスは他の言語よりクセがある気がします。<br>
+            ですが、基本は同じなので、他の言語でも活躍すること間違いなしです！<br>
+            <br>
+            では、早速本題に入っていきます。<br>
+            ここまでやってきて、それぞれの人の好物などを管理するとき、辞書型の変数を使い、<br>
+            Ken["favorite"]とか、Taro["favorite"]などとすればよかったですね。<br>
+            その進化形と言いますか、関数などを扱えるようにしたのが、「クラス」です。<br>
+            クラスは、簡単に言えば、プログラムの中に、別のプログラムを入れ込める、というものです。<br>
+            PythonのプログラムファイルAがあり、それと別にファイルBがあったとき、<br>
+            ファイルAの中にファイルBを変数Bとして入れ込める、というようなイメージです。<br>
+            構文は、 定義するときは<br>
+            「 <br>
+            class クラス名:
+            &nbsp;&nbsp;&nbsp;&nbsp;プログラム <br>
+            」<br>
+            となっていて、実際にクラスを変数に入れるときは、<br>
+            「 <br>
+            変数名 = クラス名(引数) <br>
+            」 <br>
+            変数に入れたクラスの処理を行うときは、<br>
+            「 <br>
+            クラスの入った変数名.処理内容 <br>
+            」 <br>
+            というように書きます。<br>
+            実際に使ってみた方が早いと思うので、やってみましょう。<br>
+            <div class="code">
+                class conversation: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def greet(): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("こんにちは") <br>
+                taro = conversation<br>
+                taro.greet() <br>
+            </div>
+            <div class="console">
+                こんにちは
+            </div>
+            このプログラムでは、全体のコード中で新しいクラス「conversation」を作り、<br>
+            taro変数に代入して、taro変数(conversationクラスが入っています) <br>
+            のgreet関数を呼び出しています。<br>
+            ドット(.)は、日本語でいう「の」に近い気がします。<br>
+            「taroのgreet関数」というように指定しているのですね。<br>
+            このように、プログラムを全体とは別の塊として保持できるのがクラスです。<br>
+            でも、これだけではクラスを使う意味がありませんね。<br>
+            わざわざ別の塊として保持する必要性がないからです。<br>
+            先ほどの書き方で紹介したように、クラスには、引数を渡すことができます。<br>
+            そして、その引数を元に処理を行うことができます。 <br>
+            そのときは、クラス内に__init__関数というものを定義する必要があります。<br>
+            これは、「コンストラクタ」とよばれ、通常の関数とは少し違い、 <br>
+            クラスを変数に入れた時に、初期化するための関数として使われます。<br>
+            書き方も、普通の関数とは少し違って、<br>
+            「 <br>
+            def __init__(self,引数): <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;初期化処理 <br>
+            」<br>
+            というように書きます。 <br>
+            注意点として、必ずコンストラクタの1つ目の引数にはselfが入ります。<br>
+            その後、クラスに渡された引数が入ります。<br>
+            クラス内で、クラスに渡された引数を使いたい場合は、<br>
+            このコンストラクタの引数にselfとともに引数を書いておき、<br>
+            初期化処理の時に <br>
+            「self.変数名 = コンストラクタに渡した対応させたい引数」 <br>
+            というように書きます。 クラス内で使うときは、 「self.変数名」です。<br>
+            クラス外で使いたいときは、そのまま「クラス名.変数名」です。<br>
+            もしクラスの中の関数で使いたいときは、 <br>
+            その関数の引数の一番最初にはselfを入れます。 <br>
+            ...わかりにくいですね。<br>
+            では、実際に、自己紹介のようなプログラムを書いてみましょう。<br>
+            <div class="code">
+                class character: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self,name): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;def greet(self,target): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(target+"さん、私の名前は"+self.name+"です。よろしくお願いします！") <br>
+                boy = character("太郎")<br>
+                girl = character("花子")<br>
+                boy.greet(girl.name) <br>
+            </div>
+            <div class="console">
+                花子さん、私の名前は太郎です。よろしくお願いします！
+            </div>
+            色々詰め込んでみましたが、少し複雑ですね。<br>
+            まず、characterクラスを定義し、コンストラクタにself,nameを引数として定義し、<br>
+            変数self.name(クラス内のname変数)にname(クラスの引数として渡されたname変数)を代入します。 <br>
+            greet関数でクラス内のname変数を扱うため、引数にselfを入れておき、<br>
+            追加でgreet関数の引数としてtargetを定義しておきます。<br>
+            self.nameとtargetを利用したメッセージを表示するようにprintをセットしておきます。<br>
+            クラス外では、characterクラスのboy変数とgirl変数を用意しておき、<br>
+            それぞれの引数には"太郎"と"花子"を入れておきます。<br>
+            最後、boy(characterクラス)のgreet関数を実行し、<br>
+            引数にgirl(characterクラス)のname変数("花子"が入っています)を代入しています。<br>
+            <br>
+            このように、クラスを使えば、とにかく色々便利にできます！<br>
+            他にも、クラスには「継承」という概念があったりしますが、<br>
+            これは少し複雑(個人的に)なのでここでは説明しません。<br>
+            <br>
+            ここまでで基本の解説終了です！お疲れ様でした！ <br>
+            私自身人に物を教えるのが得意じゃないので、<br>
+            うまく伝わらなかったことも多かったと思いますが、<br>
+            少しでもプログラミングに興味を持っていただければ幸いです。<br>
+            <br>
+            次のページから、Pythonで色々なものを作っているので、<br>
+            興味があればぜひご覧ください。<br>
+            ただ、細かくは説明しておりませんのでご了承ください。<br>
+            ここまでの知識があれば、細かいところは調べたらわかるはずです。<br>
+            それでは、ここまで読んでいただきありがとうございました。<br>
+            <br>
+            </p><br>
+
+            <hr class="pageCtrlLine">
+            <div class="pageCtrlArea">
+                <button class="prevPage" onclick="location.href='Chapter5.html'">前のページ</button>
+                <button class="nextPage" onclick="location.href='ChapterAdv1.html'">次のページ</button>
+            </div>
+        </div>
+    </body>
+</html>

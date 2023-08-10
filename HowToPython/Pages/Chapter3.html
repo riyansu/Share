@@ -1,0 +1,262 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HowToPython - Chapter3</title>
+        <link rel="stylesheet" href="Assets/style.css">
+    </head>
+    <body>
+        <span class="Sidebar">
+            <span class="S_homeBtn" onclick="location.href='../index.html'">
+                <img src="Assets/HomeLogo.svg" width="100%">
+            </span>
+            <span class="S_space"></span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter1.html'">
+                1
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter2.html'">
+                2
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter3.html'" style="border: 2px solid darkblue;background-color: rgba(255,255,255,0.7);">
+                3
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter4.html'">
+                4
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter5.html'">
+                5
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter6.html'">
+                6
+            </span>
+            <span class="S_space"></span>
+            <span class="S_advBtn" onclick="location.href='ChapterAdv1.html'">
+                1
+            </span>
+        </span>
+        <div class="Main">
+            <div class="title">Chapter3 : 値について知ろう</div>
+            <hr class="title">
+            <span class="section">1. 計算してみよう</span><br>
+            <p>
+                まずは、計算からやっていきましょう。<br>
+                前のページで使ったBoot.devを利用していきます。<br>
+                <span class="notification">
+                    ※ここからはBoot.devの画面は載せません。<br>
+                    　前回と同じやり方で実行してください。 
+                </span><br>
+                <div class="code">print(ここに表示したいもの)</div>
+                という構文は、覚えていますでしょうか。<br>
+                このプログラムをまずは多用して、基礎を固めていきます。<br>
+                <br>
+                数字は、半角であれば特に何も気にすることなく使用することができます。<br>
+                少数は特別な扱いですが、次のページで説明します。<br>
+                では、まずは足し算をしてみましょう。<br>
+                以下のコードを実行してみてください。<br>
+                <div class="code">print(1 + 2)</div>
+                <span class="notification_s">+と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">3</div>
+                という結果が出力されたはずです。いかがでしょうか。<br>
+                次、引き算をやっていきましょう。<br>
+                <div class="code">print(123 - 321)</div>
+                <span class="notification_s">-と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">-198</div>
+                という結果が出力されたはずです。できていますか？<br>
+                「こんなの当たり前じゃん」と思う方もいるかもしれませんね。<br>
+                では、掛け算と割り算はどうしましょう。<br>
+                ×の記号と÷の記号を使うのでしょうか。<br>
+                ×の記号と÷の記号は、プログラミングの上では基本的に使いません。<br>
+                ×は、*(アスタリスク)、÷は/(スラッシュ)を使って表します。<br>
+                アルファベットのxと見間違えるのを防ぐため、<br>
+                掛け算が*になったと言われています。<br>
+                /は、よく使いますね。 1m/sなどですね。<br>
+                では早速使ってみましょう。<br>
+                <div class="code">print(3.14 * 100)</div>
+                <div class="code">print(555 / 100)</div>
+                <span class="notification_s">*や/と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">314</div>
+                <div class="console">5.55</div>
+                と出力されたでしょうか。<br>
+                足し算と引き算はそのまま、掛け算は*、割り算は/というのは、<br>
+                プログラミングではかなり多用しますので、覚えておいてくださいね。<br>
+                次、ユニークなものをやってみましょうか。<br>
+                <div class="code">print(100 % 3)</div>
+                <span class="notification_s">%と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">1</div>
+                という結果になったでしょうか。<br>
+                %は、「余剰」という意味です。<br>
+                100 ÷ 3 = 33あまり1になります。<br>
+                よって、あまりを表す%を用いると、100 % 3 = 1となります。<br>
+                次は、べき乗の計算をしてみましょう。<br>
+                <div class="code">print(10 ** 5)</div>
+                <span class="notification_s">**と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">100000</div>
+                と出力されたでしょうか。<br>
+                これは単純に、10の5乗をすると100000なので、100000が出力されたわけです。<br>
+                一応、カッコを使った式もやってみましょうか。<br>
+                <div class="code">print((10+40) * 5)</div>
+                <span class="notification_s">*と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">250</div>
+                という結果になりますね。当たり前ですが、<br>
+                カッコを計算として使えば、カッコが先に計算されます。<br>
+                <br>
+                複素数の計算などをすることもできますが、数字の計算はこれくらいにします。<br>
+            </p><br>
+            <span class="section">2. 文字列</span><br>
+            <p>
+                <span class="subsection">文字列とは</span><br>
+                「文字列」という言葉を聞いたことがあるでしょうか。<br>
+                文字列は、プログラムの中の実際の日本語や英語などの"文字"のことです。<br>
+                プログラミングでは、半角を使うと以前お伝えしましたが、<br>
+                この文字列の中では、半角でも、全角でも、基本的になんでも使えます。<br>
+                文字列は、 "(ダブルクォーテーション)または'(シングルクォーテーション)で<br>
+                囲って表します。実際に書いてみましょう。<br>
+                <div class="code">print("おはようございます")</div>
+                <div class="console">'おはようございます'</div>
+                と出力されたでしょうか。このように、プログラムの中で、<br>
+                文字をそのままの文字として使いたい時に文字列を利用します。<br>
+                そのため、数字を表すとき、"3"というように書くと、<br>
+                この3は数字の3ではなく文字の3として扱われるため、<br>
+                直接数字としての計算はできなくなります。<br>
+                実際に見てみましょう。<br>
+                <div class="code">print("1" + 3)</div>
+                <span class="notification_s">+と数字や文字列の間の空白はなくても大丈夫です</span>
+                <div class="console">TypeError: can only concatenate str (not "int") to str</div>
+                このように表示されます。これは、TypeErrorという種類のエラーです。<br>
+                ここでいうTypeとは、値の種類、即ち「数字」や「文字列」という種類のことです。<br>
+                プログラミングにはエラーがつきものですので、焦らず解読できるようにしましょう。<br>
+                ちなみにこの場合、「文字列と連結できるのは数字ではなく文字列です」<br>
+                というエラーが出ています。文字列+数字をしているためですね。<br>
+                文字列+数字はPythonでは計算ができません。(他の言語ではできる場合があります)<br>
+                では、文字列の数字同士を足し算したらどうなるでしょうか。<br>
+                <div class="code">print("10"+"90")</div>
+                <span class="notification_s">+と文字列の間の空白はなくても大丈夫です</span>
+                <div class="console">'1090'</div>
+                と出力されます。数字の場合、10+90は100となりますね。<br>
+                しかし、今回の10と90は、文字列の10と90ですから、<br>
+                そのまま"10"と"90"が連結されたわけですね。<br>
+                <br>
+                <span class="subsection">文字列の計算</span><br>
+                文字列の、計算！？と思う方もいるかもしれません(いるのかな)が、<br>
+                はい、文字列の計算です。<br>
+                <div class="code">print("こんにちは！" + "太郎さん！")</div>
+                <span class="notification_s">+と文字列の間の空白はなくても大丈夫です</span>
+                <div class="console">'こんにちは！太郎さん！'</div>
+                と出力されるはずです。このように、文字列同士を足し算すると、<br>
+                そのまま文字列同士を連結することができます。<br>
+                次、掛け算をやってみましょう。
+                <div class="code">print("こんにちは！" * 3)</div>
+                <span class="notification_s">*と数字や文字列の間の空白はなくても大丈夫です</span>
+                <div class="console">'こんにちは！こんにちは！こんにちは！'</div>
+                と出力されるはずです。このように、文字列掛け算すると、<br>
+                文字列を繰り返して連結することができます。<br>
+                当たり前ですが、引き算と割り算はすることができません。<br>
+                足し算は大抵の言語でできますが、掛け算ができる時点でレアな言語ですし。<br>
+            </p><br>
+            <span class="section">3. 真偽値</span><br>
+            <p>
+                今回解説する最後の値、真偽値です。<br>
+                真偽値とは、数学で言えば、命題のことです。<br>
+                いわば、ONとOFFができるスイッチのようなものです。<br>
+                そして、命題でいう真をTrue、偽をFalseと表します。<br>
+                スイッチでいえば、ONをTrue、OFFをFalseと表します。<br>
+                言葉ではわかりにくいと思いますので、実際にやってみましょう。<br>
+                <div class="code">print(5 < 10)</div>
+                <span class="notification_s"><と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">True</div>
+                と出力されるはずです。この場合は、普通の数学のように、<br>
+                5が10未満だったときTrue、ではないときFalseとなります。<br>
+                では、もう一つやってみましょう。<br>
+                <div class="code">print(15 <= 10)</div>
+                <span class="notification_s"><=と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">False</div>
+                と出力されるはずです。この場合は、普通の数学と似たように、<br>
+                15が10以下だったときTrue、ではないときFalseとなります。<br>
+                プログラミングでは、「以上」や「以下」を表すとき、<br>
+                ≦は<=、≧は>=と表します。少しわかりにくいですが覚えてください。<br>
+                また、「0 < 10 < 20」のように、複数比較することもできます。 <br>
+                次に、以下のコードもやってみましょう。<br>
+                <div class="code">print(123 == 123)</div>
+                <span class="notification_s">==と数字の間の空白はなくても大丈夫です</span>
+                <div class="console">True</div>
+                この場合、少し数学と表記が異なりますが、<br>
+                123が123のときTrue、ではないときFalseとなります。<br>
+                注意点は、=ではなく==を使用することです。<br>
+                ただのイコール=には別の意味がありますので、次回説明します。<br>
+                数字の部分を文字列で書くこともできます。<br>
+                <div class="code">print("あいうえお" == "あいうえお")</div>
+                <span class="notification_s">==と文字列の間の空白はなくても大丈夫です</span>
+                <div class="console">True</div>
+                当たり前ですが、あいうえおはあいうえおなのでTrueとなります。<br>
+                では、文字列と数字の見た目が同じものはどうなるでしょうか。bbr   
+                <div class="code">print("12345" == 12345)</div>
+                <span class="notification_s">==と文字列や数字の間の空白はなくても大丈夫です</span>
+                <div class="console">False</div>
+                このようになります。文字列と数字は、全くの別物として処理されます。<br>
+                また、直接数字や文字列のようにTrueやFalseを直接書くことも可能です。<br>
+                <div class="code">print(False)</div>
+                <div class="console">False</div>
+                Falseを表示させたら、もちろんFalseです。<br>
+                <br>
+                また、数学でいう集合の、「かつ」と「または」のように、<br>
+                and と or で繋げて使うこともできます。<br>
+                実際にやってみましょう。<br>
+                <div class="code">print(30 < 50 and 80 < 100)</div>
+                <span class="notification_s">間の空白はなくても大丈夫です</span>
+                <div class="console">True</div>
+                この時は、30が50未満であり、かつ80が100未満であるときにTrueになります。<br>
+                次、orを使ってみましょう。<br>
+                <div class="code">print(30 > 50 or 60 < 100)</div>
+                <span class="notification_s">間の空白はなくても大丈夫です</span>
+                <div class="console">True</div>
+                このとき、30>50はFalse、60<100はTrueとなります。<br>
+                どれか一つでもTrueになった場合、Trueとなります。命題のU(または)と同じです。<br>
+                これは「0 < 3 and 3 < 6 or 3==2」のように、複数重ね合わせることもできます。<br>
+                この場合は、0<3はTrue、3<6もTrue、3==2のみFalseで、0<3かつ3<6はTrue、となり、<br>
+                3==2にはorで連結しているため、全体としてTrueとなります。<br>
+                カッコを使うことで、その条件を優先することもできます。<br>
+                かなり複雑になっていくので、後から説明します。<br>
+                <br>
+                真偽値はロジカルな処理を行うときにたくさん使用しますので、覚えておいてください。<br>
+            </p><br>
+            <span class="section">4. 次に進む前に</span><br>
+            <p>
+                さて、ここまで、数字と文字列、真偽値についてやっていきました。<br>
+                他にも色々ありますが、まずはこれらを覚えてください。<br>
+                <br>
+                また、コードの下に何度も「空白はなくても大丈夫」と書いてきました。<br>
+                計算などは、それぞれの項の間に空白がいくつあっても、なくても関係ないです。<br>
+                ですが、プログラムの量が多く、複雑になった時、印象が変わります。<br>
+                実際に見てください。まだ解説していないプログラムを書いてみます。<br>
+                実際に実行しなくても大丈夫です。<br>
+                <div class="code">
+                    name = "太郎" <br>
+                    point = 100 <br>
+                    if point < 50 : <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(name + "さん、あなたは不合格です。")<br>
+                    else: <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;print(name + "さん、あなたは合格です！")<br>
+                </div>
+                <div class="code">
+                    name="太郎" <br>
+                    point=100 <br>
+                    if point<50 : <br>
+                    &nbsp;&nbsp;print(name+"さん、あなたは不合格です。")<br>
+                    else: <br>
+                    &nbsp;&nbsp;print(name+"さん、あなたは合格です！")<br>
+                </div>
+                どちらの方が見やすいでしょうか。<br>
+                この量だと差はあまりないかもしれませんが、上の方が若干見やすいはずです。<br>
+                エラーがつきものなプログラミングでは、コードを後から見直すことがよくあるので、<br>
+                なるべく、少しでも見やすいコードを意識しておくことが大切です。<br>
+                <br>
+                次のページから、本格的なプログラミングを始めていきましょう。<br>
+            </p>
+            <br>
+            <hr class="pageCtrlLine">
+            <div class="pageCtrlArea">
+                <button class="prevPage" onclick="location.href='Chapter2.html'">前のページ</button>
+                <button class="nextPage" onclick="location.href='Chapter4.html'">次のページ</button>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HowToPython - Chapter2</title>
+        <link rel="stylesheet" href="Assets/style.css">
+    </head>
+    <body>
+        <span class="Sidebar">
+            <span class="S_homeBtn" onclick="location.href='../index.html'">
+                <img src="Assets/HomeLogo.svg" width="100%">
+            </span>
+            <span class="S_space"></span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter1.html'">
+                1
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter2.html'" style="border: 2px solid darkblue;background-color: rgba(255,255,255,0.7);">
+                2
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter3.html'">
+                3
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter4.html'">
+                4
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter5.html'">
+                5
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter6.html'">
+                6
+            </span>
+            <span class="S_space"></span>
+            <span class="S_advBtn" onclick="location.href='ChapterAdv1.html'">
+                1
+            </span>
+        </span>
+        <div class="Main">
+            <div class="title">Chapter2 : Pythonを始めよう</div>
+            <hr class="title">
+            <span class="section">1. "プログラミング"を知ろう</span><br>
+            <p>
+                <span class="subsection">プログラミングとは</span><br>
+                書いたプログラムは、色々な呼び方がありますが、「Script」と呼ぶことがあります。<br>
+                Scriptは、日本語で「台本」という意味がありますね。<br>
+                まさにその通りで、コンピュータにあらかじめ、「こう動いてね」という台本を与え、<br>
+                実際に使用される時、コンピュータが台本通りに動きます。<br>
+                この、"台本を与える行為"こそが、プログラミングというわけです。<br>
+                しかし、その台本を書くときは、普段私たちが使っている、<br>
+                「日本語」や「英語」などをそのまま書いても動いてくれません。<br>
+                コンピュータは、0と1のみの数字からなる「機械語」を理解できます。<br>
+                ですが、すべて機械語で台本を書くのは不可能に近いです。<br>
+                そこで、プログラミング言語が生まれました。<br>
+                プログラミング言語は、英語と数字、記号などからなる言語です。<br>
+                もちろん、コンピュータは、基本的に、直接プログラミング言語を読むことができません。<br>
+                しかし、それを"コンパイル"と呼ばれる、プログラミング言語で<br>
+                書かれた台本をすべて機械語に直す機能を搭載することで、<br>
+                間接的にコンピュータに機械語の台本を書く、という手法や、<br>
+                "インタプリタ"と呼ばれる、プログラミング言語で書かれた台本を保存しておき、<br>
+                実行するとき、一行ずつ機械語として解釈して処理する手法ができました。<br>
+                Pythonは、インタプリタの手法を採用しています。<br>
+                プログラム(台本)は、色々な呼ばれ方をするので、よく使われる呼び名を書いておきます。<br>
+                ・プログラム(Program)<br>
+                ・ソース(Source)<br>
+                ・コード(Code)<br>
+                ・ソースコード(SourceCode)<br>
+                ・スクリプト(Script)<br>
+                <br>
+                <span class="subsection">プログラミングの注意点</span><br>
+                まず、半角と全角は、全く違う文字として扱われます。<br>
+                例えば、以下の二つのコードの違いはわかりますか？<br>
+                <div class="code">print("Hello")</div>
+                <div class="code">ｐｒｉｎｔ（”ｈｅｌｌｏ”）</div>
+                一目瞭然ですね。上のコードはすべて半角、下のコードはすべて全角で書いています。<br>
+                しかし、人間が見ると、何を書いているのかは理解できますよね。<br>
+                しかし、Pythonとして実行すると、上の方は正常に動作しますが、<br>
+                下の方はエラーが出てしまいます。<br>
+                人間が理解できても、コンピュータが理解できなくては意味がないのです。<br>
+                では、以下のようなコードはどうでしょうか。<br>
+                <div class="code">print("Thank you!")</div>
+                <div class="code">print["Thank you!"]</div>
+                <div class="code">print{"Thank you!"}</div>
+                この3つは、カッコの種類がそれぞれ違います。<br>
+                こちらも、人間はすべて同じように理解できますが、<br>
+                コンピュータは、一番上のコードしか理解できません。<br>
+                このように、細かな違いでもエラーを引き起こしてしまいます。<br>
+                特に気づきにくいと言われているものが、以下のようなコードです。<br>
+                <div class="code" style="user-select:text;">print(1&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;2)</div>
+                <div class="code" style="user-select:text;">print(1　+　2)</div>
+                どこが違うかわかるでしょうか。片方は動作しますが、もう片方は動作しません。<br>
+                この2つのコード、カーソルで選択できるようにしてあるので、<br>
+                ゆっくり、左端のpの文字から右に向かって選択してみてください。<br>
+                1+2の数字と+の記号の間のスペースが、上は半角スペース3つ、<br>
+                下は全角スペース1つになっているのです。<br>
+                これだと、上のコードしか動作しません。<br>
+                でも、見た目では、違いはほとんどないと思います。<br>
+                スペースの違いも、落とし穴になりうるようです。<br>
+                (幸いなことに私は一度も落ちませんでしたが。)<br>
+                <br>
+                もう一つ、スペースに関連することなのですが、Pythonでは、<br>
+                インデント(プログラムの左のスペース)によるグルーピングをしています。<br>
+                これは、少しわかりにくいと思いますので、後ほど説明します。<br>
+            </p><br>
+            <span class="section">2. 動かす準備をしよう</span><br>
+            <p>
+                ここまで、ずっと文章を読んできて、そろそろ実際に<br>
+                動かしてみたくなった頃ではないでしょうか。<br>
+                まずは、準備をしていきましょう！<br>
+                <br>
+                前回お話しした、VSCode、Boot.devは、それぞれ特徴がありますので、このサイトでは<br>
+                Boot.dev : コードの練習など(基本編) <br>
+                VSCode : 一つの作品をしっかり作る(実践編)<br>
+                というように使い分けていきます。<br>
+                ということで、まずは<a href="https://boot.dev/playground/py" target="_blank">Boot.dev</a>にアクセスしてください。<br>
+                <img src="Assets/Chapter1/BootDev.png" style="width:50%;border: 2px black solid;"><br>
+                とりあえず基本編では、Boot.devを使用していきますので、操作を説明しておきます。<br>
+                <img src="Assets/Chapter2/HowToBootDev.png" style="width:50%;border: 2px black solid;"><br>
+                赤い点線で囲ったところは一切触らなくて大丈夫です。<br>
+                緑の点線で囲ったところで、プログラミング言語の変更ができますが、Pythonなのでこのままです。<br>
+                点線で囲んでいない、真ん中のエリアでプログラムを書きます。<br>
+                黄色の点線で囲ったところで、プログラムの実行、再実行ができます。<br>
+                青い点線で囲ったところがコンソール(エラーや実行結果などが表示されるところ)です。 <br>
+                物は試しということで、 <br>
+                真ん中のエリアのコードを全て削除し、1行目に、<br>
+                <div class="code">print("こんにちは")</div>
+                と書いてみてください。<br>
+                そして、そのまま「Run」ボタンを押します。<br>
+                <img src="Assets/Chapter2/Run.png" style="width:50%;border: 2px black solid;"><br>
+                この画像のように、 こんにちは と表示されなければ、 <br>
+                コードが間違っているか、何か不具合がある可能性があります。<br>
+                うまくいったら、これで準備は完了ですね。<br>
+                <div class="code">print(ここに表示したいもの)</div>
+                という形は、後から詳しく説明しますが、とりあえず覚えておいてください。<br>
+                次のページから、早速Pythonでプログラミングをしていきますよ！<br>
+            </p>
+            <br>
+            <hr class="pageCtrlLine">
+            <div class="pageCtrlArea">
+                <button class="prevPage" onclick="location.href='Chapter1.html'">前のページ</button>
+                <button class="nextPage" onclick="location.href='Chapter3.html'">次のページ</button>
+            </div>
+        </div>
+    </body>
+</html>

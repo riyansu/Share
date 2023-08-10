@@ -1,0 +1,257 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HowToPython - Chapter5</title>
+        <link rel="stylesheet" href="Assets/style.css">
+    </head>
+    <body>
+        <span class="Sidebar">
+            <span class="S_homeBtn" onclick="location.href='../index.html'">
+                <img src="Assets/HomeLogo.svg" width="100%">
+            </span>
+            <span class="S_space"></span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter1.html'">
+                1
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter2.html'">
+                2
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter3.html'">
+                3
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter4.html'">
+                4
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter5.html'">
+                5
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter6.html'">
+                6
+            </span>
+            <span class="S_space"></span>
+            <span class="S_advBtn" onclick="location.href='ChapterAdv1.html'" style="border: 2px solid darkblue;background-color: rgba(160, 255, 180, 0.8);">
+                1
+            </span>
+        </span>
+        <div class="Main">
+            <div class="title">Advanced1 : 簡易Pythonエディタ</div>
+            <hr class="title">
+            まずは、Pythonを楽に書いて実行するためのアプリを作ってみます。<br><br>
+            <span class="section">1. コード</span><br>
+            <p>
+                <div class="source">
+                    import&nbsp;tkinter&nbsp;as&nbsp;tk<br>
+                    from&nbsp;tkinter&nbsp;import&nbsp;scrolledtext,font,filedialog,&nbsp;messagebox<br>
+                    import&nbsp;sys<br>
+                    from&nbsp;io&nbsp;import&nbsp;StringIO<br>
+                    import&nbsp;platform<br>
+                    oskey&nbsp;=&nbsp;"Command"&nbsp;if&nbsp;platform.system()=="Darwin"&nbsp;else&nbsp;"Control"<br>
+<br>
+                    class&nbsp;RedirectedText:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;__init__(self,&nbsp;widget):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.widget&nbsp;=&nbsp;widget<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;write(self,&nbsp;text):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.widget.insert("end",&nbsp;text)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.widget.see("end")<br>
+<br>
+                    class&nbsp;Main(tk.Tk):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;__init__(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super().__init__()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.title("Pieditor&nbsp;-&nbsp;[Untitled]")<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_bar&nbsp;=&nbsp;tk.Menu(self)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.config(menu=menu_bar)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text&nbsp;=&nbsp;scrolledtext.ScrolledText(self,&nbsp;width=30,&nbsp;height=20,font=('',24),bg="white",fg="black",wrap="none",insertbackground="black")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.pack(side="left",&nbsp;fill="both",&nbsp;expand=True)<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.run_button&nbsp;=&nbsp;tk.Button(self,&nbsp;width=30,text="実行",&nbsp;command=self.run_code,font=('',24),fg="black")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.run_button.pack()<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text&nbsp;=&nbsp;scrolledtext.ScrolledText(self,&nbsp;width=30,&nbsp;height=20,font=('',24),bg="black",fg="white",wrap="none")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.pack(side="right",&nbsp;fill="both",&nbsp;expand=True)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.config(state="disabled")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.tag_configure("error",&nbsp;foreground="#faa")<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sys.stdout&nbsp;=&nbsp;RedirectedText(self.console_text)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sys.stderr&nbsp;=&nbsp;RedirectedText(self.console_text)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_menu&nbsp;=&nbsp;tk.Menu(menu_bar,&nbsp;tearoff=0)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.edit_menu&nbsp;=&nbsp;tk.Menu(menu_bar,&nbsp;tearoff=0)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu&nbsp;=&nbsp;tk.Menu(menu_bar,&nbsp;tearoff=0)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.help_menu&nbsp;=&nbsp;tk.Menu(menu_bar,&nbsp;tearoff=0)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_bar.add_cascade(label="ファイル",&nbsp;menu=self.file_menu)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_bar.add_cascade(label="編集",&nbsp;menu=self.edit_menu)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_bar.add_cascade(label="表示",&nbsp;menu=self.view_menu)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu_bar.add_cascade(label="ヘルプ",&nbsp;menu=self.help_menu)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_menu.add_command(label="新規",&nbsp;command=self.new_file,&nbsp;accelerator="{}+N".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_menu.add_command(label="開く",&nbsp;command=self.open_file,&nbsp;accelerator="{}+O".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_menu.add_command(label="保存",&nbsp;command=self.save_file,&nbsp;accelerator="{}+S".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_menu.add_command(label="名前をつけて保存",&nbsp;command=self.save_file_as,&nbsp;accelerator="{}+Shift+S".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.edit_menu.add_command(label="実行",&nbsp;command=self.run_code,&nbsp;accelerator="F5")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.add_command(label="拡大",&nbsp;command=self.zoomin_font,&nbsp;accelerator="{}+]".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.add_command(label="縮小",&nbsp;command=self.zoomout_font,&nbsp;accelerator="{}+[".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.add_separator()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.add_command(label="テーマ切替(白)",&nbsp;command=self.switch_theme,&nbsp;accelerator="{}+T".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.add_command(label="折り返し(OFF)",&nbsp;command=self.switch_wrap,&nbsp;accelerator="{}+W".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.help_menu.add_command(label="Pieditorとは",&nbsp;command=self.show_help,&nbsp;accelerator="{}+I".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-n>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.new_file())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-o>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.open_file())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-s>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.save_file())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-S>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.save_file_as())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<F5>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.run_code())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-t>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.switch_theme())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-w>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.switch_wrap())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-i>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.show_help())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-]>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.zoomin_font())<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.bind("<{}-[>".format(oskey),&nbsp;lambda&nbsp;e:&nbsp;self.zoomout_font())<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_path&nbsp;=&nbsp;""<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.read_file&nbsp;=&nbsp;""<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.theme&nbsp;=&nbsp;["white","black"]<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.wrap&nbsp;=&nbsp;"none"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.fontsize&nbsp;=&nbsp;24<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;new_file(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;self.code_text.get("1.0",&nbsp;"end-1c")&nbsp;!=&nbsp;self.read_file:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOK&nbsp;=&nbsp;messagebox.askyesno('保存されていない変更があります','保存されていない変更内容は破棄されます。')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;isOK&nbsp;:&nbsp;return<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.title("Pieditor&nbsp;-&nbsp;[Untitled]")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.delete("1.0",&nbsp;"end")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_path&nbsp;=&nbsp;""<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.read_file&nbsp;=&nbsp;""<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;open_file(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;self.code_text.get("1.0",&nbsp;"end-1c")&nbsp;!=&nbsp;self.read_file:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOK&nbsp;=&nbsp;messagebox.askyesno('保存されていない変更があります','保存されていない変更内容は破棄されます。')<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;isOK&nbsp;:&nbsp;return<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_path&nbsp;=&nbsp;filedialog.askopenfilename(filetypes=[("Python&nbsp;Files",&nbsp;"*.py&nbsp;*.pyw")])<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;self.file_path:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;open(self.file_path,&nbsp;"r")&nbsp;as&nbsp;file:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.delete("1.0",&nbsp;"end")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.read_file&nbsp;=&nbsp;file.read()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.insert("1.0",&nbsp;self.read_file)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.title("Pieditor&nbsp;-&nbsp;{}".format(self.file_path.split("/")[len(self.file_path.split("/"))-1]))<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;save_file(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;self.file_path:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;open(self.file_path,&nbsp;"w")&nbsp;as&nbsp;file:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.write(self.code_text.get("1.0",&nbsp;"end-1c"))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.read_file&nbsp;=&nbsp;self.code_text.get("1.0",&nbsp;"end-1c")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.save_file_as()<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;save_file_as(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.file_path&nbsp;=&nbsp;filedialog.asksaveasfilename(defaultextension=".py",&nbsp;filetypes=[("Python&nbsp;Files",&nbsp;"*.py&nbsp;*.pyw")])<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;self.file_path:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;open(self.file_path,&nbsp;"w")&nbsp;as&nbsp;file:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.write(self.code_text.get("1.0",&nbsp;"end-1c"))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messagebox.showinfo("保存",&nbsp;"保存が完了しました。")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.title("Pieditor&nbsp;-&nbsp;{}".format(self.file_path.split("/")[len(self.file_path.split("/"))-1]))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.read_file&nbsp;=&nbsp;self.code_text.get("1.0",&nbsp;"end-1c")<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;run_code(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code&nbsp;=&nbsp;self.code_text.get("1.0",&nbsp;"end-1c")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;old_stdout&nbsp;=&nbsp;sys.stdout<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;old_stderr&nbsp;=&nbsp;sys.stderr<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sys.stdout&nbsp;=&nbsp;StringIO()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sys.stderr&nbsp;=&nbsp;StringIO()<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exec(code)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;except&nbsp;Exception&nbsp;as&nbsp;e:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(e,&nbsp;file=sys.stderr)<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output&nbsp;=&nbsp;sys.stdout.getvalue()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error&nbsp;=&nbsp;sys.stderr.getvalue()<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sys.stdout&nbsp;=&nbsp;old_stdout<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sys.stderr&nbsp;=&nbsp;old_stderr<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.config(state="normal")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.delete("1.0",&nbsp;"end")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.insert("end",&nbsp;output)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.insert("end",&nbsp;error,&nbsp;"error")<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.config(state="disabled")<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;zoomin_font(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.fontsize&nbsp;+=&nbsp;3<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.configure(font=('',self.fontsize))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.configure(font=('',self.fontsize))<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;zoomout_font(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.fontsize&nbsp;-=&nbsp;3<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.configure(font=('',self.fontsize))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.console_text.configure(font=('',self.fontsize))<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;view_switch(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.delete(1,2)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.add_command(label="テーマ切替({})".format("黒"&nbsp;if&nbsp;self.theme[0]=="black"&nbsp;else&nbsp;"白"),&nbsp;command=self.switch_theme,&nbsp;accelerator="{}+T".format(oskey))<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_menu.add_command(label="折り返し({})".format("OFF"&nbsp;if&nbsp;self.wrap=="none"&nbsp;else&nbsp;"ON"),&nbsp;command=self.switch_wrap,&nbsp;accelerator="{}+W".format(oskey))<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;switch_wrap(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.wrap&nbsp;=&nbsp;"none"&nbsp;if&nbsp;self.wrap&nbsp;==&nbsp;"char"&nbsp;else&nbsp;"char"<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.configure(wrap=self.wrap)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_switch()<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;switch_theme(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.code_text.configure(fg=self.theme[0],bg=self.theme[1],insertbackground=self.theme[0])<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.theme.reverse()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.view_switch()<br>
+<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;show_help(self):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messagebox.showinfo("Pieditorとは？","超簡易テキストエディタ\n（Pythonファイル専用）\nファイルの読み書き、実行ができます。")<br>
+<br>
+                    if&nbsp;__name__&nbsp;==&nbsp;"__main__":<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;app&nbsp;=&nbsp;Main()<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;app.mainloop()<br>
+                </div>
+                少し機能を詰め込みすぎましたかね... <br>
+                とりあえず、すごくシンプルで簡易的なPythonエディタのコードです。<br>
+                ぜひ、VSCodeなどにコピーしてPythonファイルとして保存し、実行してみてください。<br>
+                仮の名前は「Pieditor」となっていますが、適宜変更して構いません。<br>
+                拡張子は.pyではなく.pywという拡張子で保存することをおすすめします。<br>
+                .pywは、.pyと違い、コマンドプロンプトなどのコンソールが出てきません。<br>
+                <span class="notification">
+                    ※動作チェック環境: Python 3.11.4  , macOS Venture 13.4.1(c)
+                </span> <br>
+                動作させ終わったら、ぜひ解読してみてくださいね！<br>
+                (シンプルさを重視したので、冗長なプログラムです。ご了承ください。)<br>
+            </p><br>
+            <span class="section">2. 使用したコード</span><br>
+            コードの中で今まで解説していないものを抜粋して軽く紹介します。<br>
+            少し説明も書いておきますので、詳細は調べてください。 <br>
+            <p>
+                ・import : ライブラリをインポート <br>
+                ・from : ライブラリを選択し、その中の一部をインポート <br>
+                ・as : インポートしたものを別名で管理できるようにする <br>
+                ・ライブラリの使用 : インポートしたライブラリを使用<br>
+                ・三項演算子 : 変数代入時のifとelseを短縮して表現 <br>
+                ・クラスの継承 : クラスの中に別のクラスを入れ込む <br>
+                ・タプル : 配列、辞書と並ぶ変数の一種で、複数の型を管理可能 <br>
+                ・with open : ファイルの読み書きが可能 <br>
+                ・try : 正常に処理された時に実行される <br>
+                ・except : エラー発生時に実行される <br>
+                ・配列.reverse() : 配列の順番を反転させる <br>
+                ・__name__=="__main__" : モジュール化されていないことの確認 <br>
+            </p>
+            <br>
+            <span class="section">3. 使用したライブラリ</span><br>
+            <p>
+                ・tkinter <br>
+                ・tkinter/scrolledtext,filedialog,messagebox <br>
+                ・sys  <br>
+                ・io/StringIO <br>
+                ・platform <br>
+            </p><br>
+            以上、簡易Pythonエディタでした。<br>
+            <br>
+            <hr class="pageCtrlLine">
+            <div class="pageCtrlArea">
+                <button class="prevPage" onclick="location.href='Chapter6.html'">前のページ</button>
+                <button class="nextPage" onclick="location.href='ChapterAdv2.html'">次のページ</button>
+            </div>
+        </div>
+    </body>
+</html>

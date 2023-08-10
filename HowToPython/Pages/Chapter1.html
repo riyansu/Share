@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HowToPython - Chapter1</title>
+        <link rel="stylesheet" href="Assets/style.css">
+    </head>
+    <body>
+        <span class="Sidebar">
+            <span class="S_homeBtn" onclick="location.href='../index.html'">
+                <img src="Assets/HomeLogo.svg" width="100%">
+            </span>
+            <span class="S_space"></span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter1.html'" style="border: 2px solid darkblue;background-color: rgba(255,255,255,0.7);">
+                1
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter2.html'">
+                2
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter3.html'">
+                3
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter4.html'">
+                4
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter5.html'">
+                5
+            </span>
+            <span class="S_chapterBtn" onclick="location.href='Chapter6.html'">
+                6
+            </span>
+            <span class="S_space"></span>
+            <span class="S_advBtn" onclick="location.href='ChapterAdv1.html'">
+                1
+            </span>
+        </span>
+        <div class="Main">
+            <div class="title">Chapter1 : イントロダクション</div>
+            <hr class="title">
+            <span class="section">0. はじめに</span><br>
+            <p>
+                ソフトウェア研究部の林です。<br>
+                突然ですが、みなさん、プログラミングに興味はありますか？<br>
+                もし興味がある方は、興味を持ったきっかけは何でしたか？<br>
+                ゲームやアプリを自分で作ってみたいと思ったことでしょうか。<br>
+                プログラミングで有名な人の話を聞いたことでしょうか。<br>
+                学校の授業で触れる機会があったから、という人もいると思います。<br>
+                私は、私のゲーム好きの性格、家族、学校など、さまざまな要因が絡み合って興味を持ちました。<br>
+                しかし、プログラミングの習得は一筋縄ではいかないもので、いろいろな苦労をしました。<br>
+                まず、英語が読めない。そして、専門書通りに書いても動かない。などなどです。<br>
+                ですが、はじめの一歩を踏み出した後は、できることがどんどん増えていきました。<br>
+                そこで、プログラミングに興味を持っている方に、はじめの第一歩を踏み出してもらい、<br>
+                プログラミングの面白さを感じてもらいたい、という思いでこのサイトを作りました。<br>
+                このサイトを見て、少しでもプログラミングをやってみたいと思っていただけたら幸いです。<br>
+                (また、私と一緒にプログラミングをしてくれる方、募集中です...(こっちがメイン))<br>
+                <br>
+                解説にPythonを採用したのは、Pythonが最初に学ぶ言語として良いと言われていることと、<br>
+                情報Iの範囲で習うようなので、せっかくだから作りたいな、と思ったからです。<br>
+                私自身、Python以外でも、JSやらC#やら色々な言語を触っていますし、<br>
+                初めて覚えたのも、PythonではなくHTML,CSS,JavaScriptだったので、<br>
+                どう覚えていくのが最適かは私も良くわかりませんが、<br>
+                なるべく誰にでもわかっていただけるよう、プログラミング愛を注いで、 <br>
+                1つ1つ丁寧に書いたつもりです。そのぶん、文章が長くなっていますので、 <br>
+                サラッと読んでもらって、理解できなかったらじっくり読んでもらう、 <br>
+                という方法が良いかと思います。<br>
+                ※私の主観やら考えが多く含まれていますので、内容は間違っているかもしれません。<br>
+                <br>
+            </p>
+            <span class="section">1. Pythonとは？</span><br>
+            <p>
+                このサイトを見てくださっている皆さんは、おそらく<br>
+                Pythonがプログラミング言語の一つであるということはご存知でしょう。<br>
+                Pythonは、オランダ人のグイド・ヴァンロッサム氏が1991年にリリースしたプログラミング言語です。<br>
+                プログラミング言語には他にも、CやC++、Java、Ruby、JavaScriptなど、たくさん種類があります。<br>
+                このようにたくさんの言語がこの時代に共存しているのは、<br>
+                言語の固有の特徴や開発者の好みで、使う言語が選ばれているからです。<br>
+                (ちなみに私はPythonが大好きです)<br>
+                Pythonは、その使いやすさから、今でも世界中で広く利用されています。<br>
+                Pythonは、Web開発やデータ分析、AIなど、さまざまな分野に使える汎用性の高い言語で、<br>
+                今話題のChatGPTもPythonを用いて開発されています。<br>
+                <br>
+            </p>
+            <span class="section">2. Pythonの開発環境を作ろう！</span><br>
+            <p>
+                Pythonのインストールは環境によって異なるため、ここでは解説しません。<br>
+                Pythonのプログラミングには、いくつかの方法があります。<br>
+                <br>
+                <span class="subsection">IDLEを利用する方法</span><br>
+                まず、Pythonに付属してくるIDLEを利用する方法です。<br>
+                <img src="Assets/Chapter1/IDLE.png" style="width:50%"><br>
+                <span class="notification_s">画像はWindowsのものです</span><br>
+                こちらは、>>>のラインにPythonのプログラムを入力することで、<br>
+                一行ずつ(例外もありますが)実行してプログラミングをするソフトウェアです。<br>
+                このソフト自体が、Pythonを利用して作られています。<br>
+                Windows標準の「コマンドプロンプト」というソフトと<br>
+                ほぼ同じようにしてプログラミングをします。<br>
+                使いにくく、メリットがないので、このサイトでは一切使用しません。<br>
+                <br>
+                <span class="subsection">VSCodeなどのコードエディタを利用する方法</span><br>
+                次に、VSCodeなどのコードエディタを利用する方法です。<br>
+                <img src="Assets/Chapter1/VSCode.png" style="width:50%;border: 2px black solid;"><br>
+                <span class="notification_s">画像はMacのVSCodeで、拡張機能を入れてあります。Windowsのものと若干違います。</span><br>
+                <img src="Assets/Chapter1/VSCodeWeb.png" style="width:50%;border: 2px black solid;margin-top: 5px;"><br>
+                <span class="notification_s">画像はMacのVSCode(Web版)ですが、Windowsのものと差異はないと思います</span><br>
+                こちらは、エンジニアが使ったりしているコードエディタです。<br>
+                このVSCodeというエディタは、正式名称VisualStudioCodeといいます。<br>
+                他にも色々なエディタがありますが、VSCodeが私のイチオシです。<br>
+                Web版がありますので、ダウンロードをしなくてもある程度使えます。<br>
+                ダウンロードすればすべての機能を無料で使用できます。<br>
+                コードエディタは、プログラムを書いて、Pythonファイルを保存し、<br>
+                そのファイルを実行する、という方法でプログラミングしていきます。<br>
+                特徴は、どんな言語でもプログラミングできることです。<br>
+                このサイトでは、実践編のパートで使用します。<br>
+                <br>
+                <span class="subsection">Jupyterなどを利用する方法</span><br>
+                次に、Jupyterなどを利用する方法です。<br>
+                <img src="Assets/Chapter1/Jupyter.png" style="width:50%;border: 2px black solid;"><br>
+                <span class="notification_s">画像はMacのものですが、Windowsのものと差異はないと思います</span><br>
+                こちらは、プログラムの入力欄(セルと呼びます)にプログラムを書き、<br>
+                実行することで、そのセルに書かれたプログラム全体を実行します。<br>
+                セルをつなげて1つのPythonファイルとして保存することも、<br>
+                セルの状態を専用のファイルで保存することもできます。<br>
+                個人的には、コードエディタとIDLEを合わせたような感じだと思っています。<br>
+                こちらは、プログラムをサクッと実行できるので研究などで使います。<br>
+                便利ですが、このサイトでは使用しません。<br>
+                <br>
+                <span class="subsection">Boot.devなどを利用する方法</span><br>
+                最後に、boot.devなどのオンラインPython実行サイトを利用する方法です。<br>
+                <img src="Assets/Chapter1/BootDev.png" style="width:50%;border: 2px black solid;"><br>
+                <span class="notification_s">画像はMacのものですが、Windowsのものと差異はないと思います</span><br>
+                こちらは、プログラムの入力欄にプログラムを書き、<br>
+                実行ボタンを押すことで、プログラムの実行結果がわかるという物です。<br>
+                アプリなど、実際に使う物を作る時には使用できませんが、<br>
+                コードのテストや練習などに使うことができます。<br>
+                操作感はコードエディタと同じような物ですので、使いやすいです。<br>
+                このサイトの基本編ではBoot.devを使用します。<br>
+                <br>
+            </p>
+            <span class="section">3. このサイトの読み方</span><br>
+            <p>
+                このサイトには、コードをたくさん載せてあります。<br>
+                書けば実際に動くコードを載せているので、ぜひ書いて実行してみてください。<br>
+                コードは、コピーすることはできますが、なるべく自分の手で書くことをおすすめします。<br>
+                最初のうちは、「コードを書くことに慣れる」「自分の手で書いた達成感を味わう」<br>
+                ということを目的に、なるべく自分の手で書いた方がいいと個人的には思います。<br>
+                ぜひ、自分の手で書いたコードを動かして、楽しさを実感してください！<br>
+                また、書いたコードを改造するのも楽しいですよ！<br>
+                個人的には、自分オリジナルのコードを書けるようになるまでは、<br>
+                解説サイトなどのコードを真似して書き、その中の数値などを変えて<br>
+                「ここをこうするとこうなるんだ〜」と、実験みたいな感じで色々試すといいです。<br>
+                <br>
+                <ご注意> <br>
+                1. サイト中で、 〇〇を〇〇することを、「〇〇〇〇」といいます  <br>
+                　 のように説明しているところがありますが、それは一切覚える必要はありません。ただ、<br>
+                　 私がいつも使用している言葉なので、わかってもらえるように書いています。<br>
+                2. 参考文献など特になく、完全オリジナルですので、わかりにくい可能性が高いです。<br>
+                <br>
+                <span class="warn">
+                    このサイトは、学校ではなく、家で、私のMacを使って作っています。<br>
+                    Windowsとは挙動や画面が若干異なる場面があります。<br>
+                    そこはそれぞれのやり方を適宜お伝えします。<br>
+                </span>
+                <br>
+            </p>
+            <br>
+            ここまで読んでいただきありがとうございます。<br>
+            ぜひ、左のサイドバーの数字ボタン、または下の「次のページへ」ボタンから、<br>
+            どんどん読み進めてください！！<br>
+            <br>
+            <hr class="pageCtrlLine">
+            <div class="pageCtrlArea">
+                <button class="prevPage" onclick="location.href='../index.html'">前のページ</button>
+                <button class="nextPage" onclick="location.href='Chapter2.html'">次のページ</button>
+            </div>
+        </div>
+    </body>
+</html>
