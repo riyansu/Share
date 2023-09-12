@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>私のおすすめ</title>
+    <style>
+        body{
+            text-align: center;
+            background-color: rgb(97, 155, 135);
+            font-size: 30px;
+            user-select: none;
+            margin: 0;
+        }
+        .Title{
+            font-size:80px;
+            font-weight: bold;
+        }
+        .AD{
+            background-color: black;
+            color:white;
+            padding-top: 10px;
+            padding-bottom: 30px;
+        }
+        .show_detail{
+            color:lightgray;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .show_detail:hover{
+            color:rgb(230, 230, 230)
+        }
+        .detail{
+            display: none;
+            background-color: rgb(255,255,255,0.2);
+        }
+        img{
+            width: 1100px;
+        }
+        .changeScreenShotBtn{
+            border-radius: 50%;
+            width:30px;
+            height:30px;
+            background-color: gray;
+            display: inline-block;
+            cursor: pointer;
+            vertical-align: middle;
+            transition: 0.3s;
+        }
+        .changeScreenShotBtn:hover{
+            background-color: lightgray;
+        }
+        .moveScreenShotBtn{
+            font-size: 40px;
+            font-weight: bold;
+            vertical-align: middle;
+            cursor: pointer;
+            color:azure
+        }
+        a{
+            color:dodgerblue;
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        let Detail,ScreenShot
+        let selected = 1
+        let changed = false
+        window.onload=()=>{
+            Detail = document.getElementById("detail")
+            ScreenShot = document.getElementById("screenshot")
+        }
+        function switch_detail(){
+            Detail.style.display = (Detail.style.display=="none")?"block":"none"
+        }
+        function change_screenShot(n){
+            ScreenShot.src = `Images/s${n}.png`
+            document.getElementById(`s${selected}`).style.removeProperty("background-color")
+            document.getElementById(`s${n}`).style.backgroundColor = "white"  
+            selected = n
+        }
+        function move_screenShot(bool){
+            if(bool) change_screenShot( (selected != 1)? selected-1:5)
+            else change_screenShot( (selected != 5)? selected+1:1)
+        }
+
+        setInterval(() => {
+            if(!changed)move_screenShot(false)
+        }, 3000);
+    </script>
+</head>
+<body>
+    <hr>
+    <span class="Title">私のおすすめ</span>
+    <hr>
+    <p>
+        私のおすすめは、Webiter(自作HTMLエディタ)です！ <br>
+        その写真はこちらです！
+    </p>
+    <img src="Images/image.jpg" width="400">
+    <p>
+        これを使えば、簡単、高速に、HTMLを書くことができます！ <br>
+        ぜひご利用ください！！ <br>
+    </p><br>
+    <div>〜ここから下は宣伝になっています〜</div>
+    <div class="AD">
+        <h1>Webiterの強み</h1>
+        Webiterでは、高速なコーディングをサポートします。 <br>
+        コードの補完機能やショートカットキー、その他便利機能を備えており、<br>
+        レイアウトもシンプルで見やすくまとめました。 <br>
+        また、なるべく動作が早くなるように作りましたので、 <br>
+        他の類似サービスと比較して圧倒的なパフォーマンスを誇っています。 <br>
+        <span class="show_detail" onclick="switch_detail()">[ 詳細を表示 ]</span> <br>
+        <div id="detail" class="detail" style="display: none;">
+            PageSpeed Insightsでの比較では、 <br>
+            パフォーマンスの点数が、 <br>
+            VSCodeというエディタが約50％、 <br>
+            CodePenというエディタが約60％だったのに対し、 <br>
+            Webiterでは100％となっております。
+        </div>
+        <br>
+        <h1>Webiterのスクリーンショット</h1>
+        <img src="Images/s1.png" id="screenshot">
+        <div>
+            <span class="moveScreenShotBtn" onclick="changed=true;move_screenShot(true)">&lt;</span>
+            <span class="changeScreenShotBtn" id="s1" onclick="changed=true;change_screenShot(1)" style="background-color: white;"></span>
+            <span class="changeScreenShotBtn" id="s2" onclick="changed=true;change_screenShot(2)"></span>
+            <span class="changeScreenShotBtn" id="s3" onclick="changed=true;change_screenShot(3)"></span>
+            <span class="changeScreenShotBtn" id="s4" onclick="changed=true;change_screenShot(4)"></span>
+            <span class="changeScreenShotBtn" id="s5" onclick="changed=true;change_screenShot(5)"></span>
+            <span class="moveScreenShotBtn" onclick="changed=true;move_screenShot(false)">&gt;</span>
+        </div>
+        <br>
+        以上、Webiterの紹介でした。<br>
+        Webiterは<a href="https://riyansu.github.io/Webiter" target="_blank">こちら</a>から使用できます。 <br>
+        ソースは<a href="https://github.com/riyansu/Webiter" target="_blank">こちら</a>から確認できます。<br>
+        Webiterを利用して、もっとHTMLを好きになってください！<br>
+    </div>
+</body>
+</html>
